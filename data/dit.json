@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "titulo": "Desarrollo Infantil Temprano",
+    "anio": "2024",
+    "definicion_anemia": "RM 363-2022-MINSA (hemoglobina con ajuste por altitud; nacional 43.7%). Serie usada en el campo 'anemia' por departamento. Alternativa disponible: RM 251-2024-MINSA / nueva directriz OMS 2024 (nacional 35.3%), incluida en 'anemia_oms'.",
+    "fuente": "INEI - ENDES 2024",
+    "fuentes_url": [
+      "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf",
+      "https://proyectos.inei.gob.pe/files/publicaciones/2024/DIT_ENDES_2024.pdf"
+    ],
+    "notas": {
+      "anemia": "Niños de 6 a 35 meses. Cuadro Nº 06A (RM 363-2022-MINSA) y Cuadro Nº 6.1A (RM 251-2024/OMS), ENDES 2024, valor estimado 2024.",
+      "dci": "Desnutrición crónica en menores de 5 años, patrón de referencia OMS. Cuadro Nº 04A, ENDES 2024, valor estimado 2024. Valores marcados como referenciales (CV>15%) en ENDES: Arequipa, Departamento de Lima, Moquegua, Tacna.",
+      "bajo_peso": "Nacidos en los últimos 5 años con bajo peso al nacer (<2.5 kg). Cuadro Nº 09A, ENDES 2024, valor estimado bienio 2023-2024. Valores referenciales (CV>15%): Arequipa, Moquegua, Tacna.",
+      "lima": "El INEI reporta Lima en dos ámbitos: 'Lima Metropolitana' (43 distritos) y 'Departamento de Lima' (provincias de Barranca, Cajatambo, Canta, Cañete, Huaral, Huarochirí, Huaura, Oyón y Yauyos)."
+    }
+  },
+  "nacional": {
+    "anemia": 43.7,
+    "anemia_oms": 35.3,
+    "dci": 12.1,
+    "bajo_peso": 7.3
+  },
+  "departamentos": [
+    {"departamento": "Amazonas", "anemia": 47.1, "anemia_oms": 46.4, "dci": 20.4, "bajo_peso": 6.4, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Áncash", "anemia": 47.0, "anemia_oms": 37.5, "dci": 13.5, "bajo_peso": 8.3, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Apurímac", "anemia": 58.7, "anemia_oms": 43.0, "dci": 15.7, "bajo_peso": 6.4, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Arequipa", "anemia": 44.2, "anemia_oms": 43.9, "dci": 5.6, "bajo_peso": 4.2, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Ayacucho", "anemia": 51.0, "anemia_oms": 45.7, "dci": 17.0, "bajo_peso": 7.4, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Cajamarca", "anemia": 38.4, "anemia_oms": 40.6, "dci": 20.4, "bajo_peso": 9.3, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Prov. Const. del Callao", "anemia": 34.9, "anemia_oms": 24.5, "dci": 6.2, "bajo_peso": 7.4, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Cusco", "anemia": 53.8, "anemia_oms": 45.3, "dci": 12.1, "bajo_peso": 6.4, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Huancavelica", "anemia": 55.1, "anemia_oms": 32.9, "dci": 24.0, "bajo_peso": 10.1, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Huánuco", "anemia": 44.9, "anemia_oms": 41.7, "dci": 16.5, "bajo_peso": 7.2, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Ica", "anemia": 39.4, "anemia_oms": 31.1, "dci": 7.6, "bajo_peso": 5.9, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Junín", "anemia": 50.5, "anemia_oms": 41.2, "dci": 17.8, "bajo_peso": 8.2, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "La Libertad", "anemia": 36.0, "anemia_oms": 25.6, "dci": 16.8, "bajo_peso": 6.8, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Lambayeque", "anemia": 36.5, "anemia_oms": 25.9, "dci": 13.1, "bajo_peso": 7.5, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Lima Metropolitana", "anemia": 32.9, "anemia_oms": 24.0, "dci": 4.3, "bajo_peso": 7.0, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Departamento de Lima", "anemia": 42.4, "anemia_oms": 30.3, "dci": 6.3, "bajo_peso": 5.5, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Loreto", "anemia": 62.0, "anemia_oms": 50.9, "dci": 19.5, "bajo_peso": 9.7, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Madre de Dios", "anemia": 56.3, "anemia_oms": 45.5, "dci": 8.4, "bajo_peso": 5.4, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Moquegua", "anemia": 39.0, "anemia_oms": 38.6, "dci": 2.7, "bajo_peso": 3.9, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Pasco", "anemia": 54.4, "anemia_oms": 36.2, "dci": 14.1, "bajo_peso": 9.4, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Piura", "anemia": 42.4, "anemia_oms": 35.4, "dci": 14.3, "bajo_peso": 9.8, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Puno", "anemia": 76.0, "anemia_oms": 53.1, "dci": 11.5, "bajo_peso": 7.2, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "San Martín", "anemia": 38.4, "anemia_oms": 34.6, "dci": 10.0, "bajo_peso": 8.4, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Tacna", "anemia": 35.7, "anemia_oms": 32.9, "dci": 2.9, "bajo_peso": 3.8, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Tumbes", "anemia": 45.6, "anemia_oms": 34.6, "dci": 10.4, "bajo_peso": 7.0, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"},
+    {"departamento": "Ucayali", "anemia": 54.6, "anemia_oms": 42.8, "dci": 19.4, "bajo_peso": 6.0, "fuente_url": "https://proyectos.inei.gob.pe/endes/2024/ppr2/Indicadores_de_Resultados_de_los_Programas_Presupuestales_ENDES_2024.pdf"}
+  ]
+}

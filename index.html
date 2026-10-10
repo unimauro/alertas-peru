@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alertas Perú — demo</title>
+  <meta name="description" content="Prototipo de tablero de alertas para tomadores de decisión del Estado peruano: desarrollo infantil temprano, Fenómeno El Niño y lagunas glaciares peligrosas." />
+
+  <!-- Leaflet 1.9.4 CSS (CDN unpkg con SRI). Verificar hash antes de producción. -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Banner PROTOTIPO -->
+  <div class="proto-banner" role="note">
+    <strong>PROTOTIPO / DEMO</strong>
+    <span>Datos de ejemplo. No reemplaza los sistemas oficiales de alerta.</span>
+  </div>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="flag" aria-hidden="true">🇵🇪</span>
+      <div class="brand-text">
+        <h1>Alertas Perú <span class="tag">demo</span></h1>
+        <p class="subtitle">Señales clave para la toma de decisiones del Estado</p>
+      </div>
+    </div>
+    <div class="header-meta">
+      <span class="updated" id="lastUpdated">Actualizado: —</span>
+    </div>
+  </header>
+
+  <!-- Navegación por módulos -->
+  <nav class="tabs" role="tablist" aria-label="Módulos de alertas">
+    <button class="tab is-active" role="tab" aria-selected="true" data-tab="dit">
+      <span class="tab-ico" aria-hidden="true">🧒</span>
+      <span>Desarrollo Infantil Temprano</span>
+    </button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="nino">
+      <span class="tab-ico" aria-hidden="true">🌊</span>
+      <span>Fenómeno El Niño</span>
+    </button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="glaciares">
+      <span class="tab-ico" aria-hidden="true">🏔️</span>
+      <span>Lagunas glaciares</span>
+    </button>
+  </nav>
+
+  <main class="container">
+
+    <!-- ============ MÓDULO 1: DIT ============ -->
+    <section class="panel is-active" id="panel-dit" role="tabpanel">
+      <div class="panel-head">
+        <h2>Desarrollo Infantil Temprano</h2>
+        <p class="panel-sub" id="dit-fuente">Anemia infantil, desnutrición crónica y bajo peso al nacer por departamento.</p>
+      </div>
+
+      <div class="kpi-grid" id="dit-kpis"><!-- KPIs inyectados por JS --></div>
+
+      <div class="split">
+        <div class="card map-card">
+          <div class="card-head">
+            <h3>Mapa de alerta por departamento</h3>
+            <span class="legend">
+              <i class="dot ok"></i> Normal
+              <i class="dot warn"></i> Alerta
+              <i class="dot crit"></i> Crítico
+            </span>
+          </div>
+          <div id="dit-map" class="map"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <h3>Ranking de alerta — Anemia infantil</h3>
+          </div>
+          <div class="table-wrap">
+            <table class="rank-table" id="dit-ranking"><!-- filas por JS --></table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mapa de la distancia -->
+      <div class="card distancia-card">
+        <div class="card-head">
+          <h3>Mapa de la distancia</h3>
+          <label class="ref-select">
+            Referente:
+            <select id="dit-ref"></select>
+          </label>
+        </div>
+        <p class="hint">Brecha de cada departamento frente al referente. Cerrar la distancia es la meta.</p>
+        <div class="chart-wrap"><canvas id="dit-chart"></canvas></div>
+      </div>
+    </section>
+
+    <!-- ============ MÓDULO 2: NIÑO ============ -->
+    <section class="panel" id="panel-nino" role="tabpanel" hidden>
+      <div class="panel-head">
+        <h2>Fenómeno El Niño</h2>
+        <p class="panel-sub" id="nino-fuente">Estado actual, regiones en riesgo y antecedentes.</p>
+      </div>
+
+      <div class="estado-actual" id="nino-estado"><!-- por JS --></div>
+
+      <div class="split">
+        <div class="card">
+          <div class="card-head"><h3>Regiones en riesgo</h3></div>
+          <div class="table-wrap">
+            <table class="rank-table" id="nino-regiones"></table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Antecedentes</h3></div>
+          <ul class="timeline" id="nino-antecedentes"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MÓDULO 3: GLACIARES ============ -->
+    <section class="panel" id="panel-glaciares" role="tabpanel" hidden>
+      <div class="panel-head">
+        <h2>Lagunas glaciares peligrosas</h2>
+        <p class="panel-sub" id="glaciares-fuente">Inventario, monitoreo y antecedentes de aluviones.</p>
+      </div>
+
+      <div class="kpi-grid" id="glaciares-kpis"></div>
+
+      <div class="split">
+        <div class="card">
+          <div class="card-head"><h3>Monitoreo por región</h3></div>
+          <div class="chart-wrap"><canvas id="glaciares-chart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Antecedentes de aluviones</h3></div>
+          <ul class="timeline" id="glaciares-antecedentes"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Suscripción (solo UI) -->
+    <section class="cta">
+      <div class="cta-inner">
+        <div>
+          <h3>Suscríbete a las alertas por correo</h3>
+          <p>Recibe un resumen semanal de las señales críticas. (Demo — sin envío real.)</p>
+        </div>
+        <form class="cta-form" id="subscribe-form">
+          <input type="email" id="subscribe-email" placeholder="tu@correo.gob.pe" aria-label="Correo electrónico" required />
+          <button type="submit">Suscribirme</button>
+        </form>
+      </div>
+      <p class="cta-msg" id="subscribe-msg" role="status" hidden></p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <strong>Prototipo</strong> · datos oficiales con fuente ·
+      no reemplaza los sistemas oficiales de alerta (SENAMHI / INDECI / INAIGEM).
+    </p>
+    <p class="muted">Alertas Perú — demo · tablero para tomadores de decisión</p>
+  </footer>
+
+  <!-- Leaflet 1.9.4 JS (CDN unpkg, SRI sha384 verificado) -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH"
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- Chart.js 4.4.1 (CDN jsdelivr, SRI sha384 verificado) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"
+    integrity="sha384-9nhczxUqK87bcKHh20fSQcTGD4qq5GhayNYSYWqwBkINBhOfQLg/P5HG5lF1urn4"
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

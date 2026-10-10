@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "titulo": "Fenómeno El Niño / La Niña en el Perú",
+    "corte": "octubre 2026",
+    "fuente": "ENFEN (Comisión Multisectorial: IMARPE, SENAMHI, IGP, DHN, INDECI, IGN, ANA) / SENAMHI",
+    "nota_rigor": "Cifras tomadas de comunicados oficiales ENFEN y reportes de INDECI/BCRP. Donde el comunicado no publica un valor numerico, se usa la categoria oficial del evento (ej. 'magnitud extraordinaria') y no se inventa cifra; esos casos quedan como 's/d'.",
+    "fuentes_url": [
+      "https://enfen.imarpe.gob.pe/",
+      "https://enfen.imarpe.gob.pe/comunicados/",
+      "https://enfen.imarpe.gob.pe/download/comunicado-oficial-enfen-n-16-2026/",
+      "https://www.senamhi.gob.pe/?p=aviso-meteorologico",
+      "https://www.gob.pe/senamhi"
+    ]
+  },
+  "estado_actual": {
+    "condicion": "El Nino Costero ACTIVO en la costa norte (region Nino 1+2) y El Nino en el Pacifico central/ecuatorial (region Nino 3.4) 2026-2027. No hay La Nina.",
+    "icen": "s/d numerico en el comunicado. ENFEN clasifica el evento costero en MAGNITUD EXTRAORDINARIA (categoria mas alta del ICEN) para el periodo setiembre 2026 - enero 2027.",
+    "nino34": "El Nino en Nino 3.4 con magnitud 'muy fuerte' prevista entre setiembre 2026 y enero 2027 (maxima intensidad noviembre-diciembre 2026), descendiendo a 'fuerte' entre febrero y marzo 2027. Probabilidad de magnitud muy fuerte >58%.",
+    "alerta_enfen": "ALERTA de El Nino Costero (nivel maximo del sistema de alerta ENFEN: Vigilancia < Alerta). Se mantiene desde mediados de 2026.",
+    "pronostico_verano": "Verano dic 2026 - mar 2027: continuidad de precipitaciones superiores a los promedios historicos en costa norte, costa central y sierra norte occidental; lluvias normales a inferiores en sierra sur y sectores de la Amazonia. Probabilidad de magnitud extraordinaria del Nino Costero por mes (comunicado N16): setiembre 85%, octubre 82%, noviembre 78%, diciembre 70%, enero 2027 59%; para el verano dic-mar se estima 48% extraordinaria.",
+    "comunicado": "Comunicado Oficial ENFEN N17-2026 (el mas reciente listado); valores detallados verificados en el N16-2026.",
+    "fecha": "N17-2026: 28 de setiembre de 2026; N16-2026: 14 de setiembre de 2026.",
+    "fuente_url": "https://enfen.imarpe.gob.pe/comunicados/"
+  },
+  "regiones_riesgo": [
+    {"region": "Tumbes", "riesgo": "lluvias intensas, inundaciones y huaicos", "nivel": "alto", "fuente_url": "https://enfen.imarpe.gob.pe/download/comunicado-oficial-enfen-n-16-2026/"},
+    {"region": "Piura", "riesgo": "lluvias intensas, inundaciones y huaicos (zona mas expuesta historicamente)", "nivel": "alto", "fuente_url": "https://enfen.imarpe.gob.pe/download/comunicado-oficial-enfen-n-16-2026/"},
+    {"region": "Lambayeque", "riesgo": "lluvias intensas e inundaciones", "nivel": "alto", "fuente_url": "https://enfen.imarpe.gob.pe/download/comunicado-oficial-enfen-n-16-2026/"},
+    {"region": "La Libertad", "riesgo": "lluvias intensas e inundaciones en la costa", "nivel": "alto", "fuente_url": "https://enfen.imarpe.gob.pe/download/comunicado-oficial-enfen-n-16-2026/"},
+    {"region": "Costa central (incl. Lima e Ica)", "riesgo": "precipitaciones superiores al promedio en verano 2026-2027", "nivel": "medio", "fuente_url": "https://larepublica.pe/sociedad/2026/09/15/nino-costero-duplica-su-probabilidad-de-alcanzar-una-magnitud-extraordinaria-mas-de-3-millones-de-menores-estan-expuestos-678405"},
+    {"region": "Sierra norte occidental (Cajamarca, Ancash, sierra de La Libertad/Piura)", "riesgo": "lluvias superiores al promedio, riesgo de huaicos y deslizamientos", "nivel": "medio", "fuente_url": "https://enfen.imarpe.gob.pe/download/comunicado-oficial-enfen-n-16-2026/"},
+    {"region": "Sierra sur", "riesgo": "lluvias normales a inferiores; riesgo de deficit hidrico/sequia agricola", "nivel": "medio", "fuente_url": "https://enfen.imarpe.gob.pe/download/comunicado-oficial-enfen-n-16-2026/"},
+    {"region": "Amazonia (sectores)", "riesgo": "lluvias normales a inferiores a lo normal", "nivel": "bajo", "fuente_url": "https://enfen.imarpe.gob.pe/download/comunicado-oficial-enfen-n-16-2026/"}
+  ],
+  "exposicion_poblacional": {
+    "menores_en_riesgo_alto_muy_alto": "3,006,028 menores (31% de la poblacion 0-17 anos)",
+    "locales_educativos_en_riesgo": "13,093 (43.4% del total nacional)",
+    "establecimientos_salud_estatales_expuestos_inundacion": "1,917",
+    "fuente_url": "https://larepublica.pe/sociedad/2026/09/15/nino-costero-duplica-su-probabilidad-de-alcanzar-una-magnitud-extraordinaria-mas-de-3-millones-de-menores-estan-expuestos-678405"
+  },
+  "antecedentes": [
+    {
+      "evento": "El Nino 1982-1983 (magnitud extraordinaria)",
+      "impacto": "~1,267,730 personas afectadas (831,915 damnificados zona norte + 435,815 zona sur); 512 muertes directas y exceso de mortalidad ~8,500 por malaria y EDA; perdidas ~US$ 3,283 millones (~11.6% del PBI de 1983); PBI cayo 11.8% ese ano.",
+      "fuente_url": "https://andina.pe/agencia/noticia-como-impacto-nino-peru-los-eventos-19821983-19971998-y-2017-943812.aspx"
+    },
+    {
+      "evento": "El Nino 1997-1998 (magnitud extraordinaria)",
+      "impacto": "Perdidas ~US$ 1,625 millones (~2.9% del PBI); danos en transportes por ~S/ 3,608 millones; 6,395 km de carreteras afirmadas y 146 puentes destruidos.",
+      "fuente_url": "https://www.bcrp.gob.pe/docs/Publicaciones/Reporte-Inflacion/2014/julio/ri-julio-2014-recuadro-1.pdf"
+    },
+    {
+      "evento": "El Nino Costero 2017",
+      "impacto": "Al 04-jul-2017 (95.5% de datos procesados, INDECI): 285,453 damnificados, 1,454,051 afectados, 138 fallecidos, 459 heridos, 18 desaparecidos; ~66,093 viviendas destruidas/inhabitables; danos valorados en mas de US$ 3,100 millones. Mayor afectacion en Tumbes, Piura y Lambayeque.",
+      "fuente_url": "https://portal.indeci.gob.pe/wp-content/uploads/2019/01/201708091706381.pdf"
+    },
+    {
+      "evento": "El Nino Costero / ciclon Yaku 2023 y transicion 2023-24",
+      "impacto": "Lluvias intensas e inundaciones en costa norte y centro; cientos de miles de afectados y damnificados (INDECI). Cifra consolidada: s/d en esta consulta; verificar en reportes INDECI 2023.",
+      "fuente_url": "https://vigilante.pe/2023/03/17/cuanto-se-perdio-en-el-nino-costero-2017-y-cuanto-se-perdera-por-yaku-2023/"
+    }
+  ],
+  "factibilidad_alertas": {
+    "fuentes_datos": [
+      {
+        "nombre": "SENAMHI - Avisos meteorologicos",
+        "url": "https://www.senamhi.gob.pe/?p=aviso-meteorologico",
+        "frecuencia": "continua, segun eventos (avisos de varias decenas de horas; se emiten durante todo el ano)",
+        "api": "no (publicacion web/PDF; sin REST publica documentada)",
+        "nota": "Niveles de alerta por color: amarillo, naranja, rojo; estados 'emitido'/'vigente'. Cubre precipitaciones, friaje, vientos, temperaturas. Base principal para una alerta operativa de lluvias."
+      },
+      {
+        "nombre": "ENFEN - Comunicados e informes tecnicos",
+        "url": "https://enfen.imarpe.gob.pe/comunicados/",
+        "frecuencia": "comunicado oficial ~quincenal/mensual; informe tecnico mensual",
+        "api": "no (PDF + pagina web; repositorio IMARPE)",
+        "nota": "Define estado del sistema de alerta (Vigilancia/Alerta) para El Nino/La Nina Costera. Requiere parseo de PDF o scraping del listado."
+      },
+      {
+        "nombre": "SENAMHI - Descarga de datos hidrometeorologicos",
+        "url": "https://www.senamhi.gob.pe/?p=descarga-datos-hidrometeorologicos",
+        "frecuencia": "datos historicos; estaciones automaticas con datos horarios (GBON/RBON)",
+        "api": "parcial (descarga web; datos horarios de estaciones automaticas de intercambio internacional)",
+        "nota": "Util para umbrales de precipitacion acumulada; no es tiempo real garantizado para todas las estaciones."
+      },
+      {
+        "nombre": "SENAMHI - IDESEP (Infraestructura de Datos Espaciales) / geoservicios",
+        "url": "https://www.senamhi.gob.pe/",
+        "frecuencia": "mapas y capas actualizadas segun producto",
+        "api": "parcial (geoservicios WMS/WFS y visores cartograficos; cobertura variable)",
+        "nota": "Capas de El Nino, avisos meteorologicos, pronostico/monitoreo. Base para componente geoespacial del demo."
+      },
+      {
+        "nombre": "Portal Nacional de Datos Abiertos - datasets SENAMHI",
+        "url": "https://www.datosabiertos.gob.pe/dataset/datos-hidrometeorol%C3%B3gicos-de-libre-acceso",
+        "frecuencia": "actualizacion periodica del dataset (no tiempo real)",
+        "api": "parcial (CKAN del portal datos abiertos permite acceso programatico a recursos)",
+        "nota": "Incluye variables meteorologicas de estaciones automaticas de intercambio internacional."
+      },
+      {
+        "nombre": "NOAA CPC - ENSO (referencia internacional, region Nino 3.4)",
+        "url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodisc_Sp.shtml",
+        "frecuencia": "mensual (diagnostico ENSO) + datos semanales de TSM",
+        "api": "parcial (archivos de texto/tablas abiertas de indices Nino 3.4, ONI)",
+        "nota": "Complemento para el Pacifico central; para el Nino Costero del Peru la autoridad es ENFEN, no NOAA."
+      }
+    ],
+    "viabilidad": "VIABLE para un demo. Se puede construir un tablero de alertas combinando: (a) estado ENFEN (Vigilancia/Alerta) parseado de los comunicados, (b) avisos meteorologicos SENAMHI por nivel de color y region, y (c) umbrales de precipitacion de estaciones/datos abiertos. Una alerta 100% automatizada en tiempo real es solo PARCIALMENTE viable sin convenio, porque las fuentes mas autorizadas se publican como PDF/web y no exponen una API REST publica estable.",
+    "limitaciones": "1) No hay API REST publica oficial y documentada de SENAMHI para avisos en tiempo real; requiere scraping/parsing de web y PDF (fragil ante cambios de formato). 2) Comunicados ENFEN son quincenales/mensuales, no sirven para alerta inmediata (son de contexto estacional). 3) Latencia y cobertura desigual de estaciones automaticas en tiempo real. 4) Uso oficial de alertas para gestion de riesgo debe canalizarse por COEN/INDECI-SINAGERD; un demo propio no sustituye la alerta oficial. 5) Recomendable solicitar acceso/convenio a SENAMHI (https://www.senamhi.gob.pe/?p=solicitud-servicio) para datos garantizados."
+  }
+}

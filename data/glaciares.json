@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "titulo": "Lagunas glaciares peligrosas del Perú",
+    "fuente": "INAIGEM (Inventario Nacional de Glaciares y Lagunas de Origen Glaciar 2023 / Evaluación Nacional de Lagunas Glaciares con Riesgo de Desborde 2024) y MINAM",
+    "nota_metodologica": "Todas las cifras provienen de fuentes oficiales o de prensa que citan a INAIGEM/MINAM. Donde un dato no es público se marca 's/d' (sin dato). Cordillera Blanca (Áncash) concentra la mayor exposición. La cifra popular de '~153 lagunas' corresponde a 152 lagunas de riesgo elevado (58 muy alto + 94 alto) de la evaluación 2024 del INAIGEM.",
+    "fecha_consulta": "2026-10-10",
+    "fuentes_url": [
+      "https://repositorio.inaigem.gob.pe/items/7029db53-5118-4e93-8b2a-71e6e26db5f6",
+      "https://repositorio.inaigem.gob.pe/items/c1daa672-ea69-4a19-bc79-855e240e209d",
+      "https://www.gob.pe/institucion/inaigem/informes-publicaciones/4746459-inventario-nacional-de-glaciares-y-lagunas-de-origen-glaciar-inglog",
+      "https://andina.pe/agencia/noticia-presentan-segundo-inventario-nacional-glaciares-y-lagunas-origen-glaciar-963979.aspx",
+      "https://gestion.pe/peru/tragedia-en-nepal-peru-tiene-mas-de-150-lagunas-glaciares-en-riesgo-elevado-de-desborde-donde-se-encuentran-noticia/",
+      "https://es.gizmodo.com/peru-identifico-58-lagunas-glaciares-de-alto-riesgo-en-los-andes-solo-tres-tienen-sensores-que-avisan-en-tiempo-real-si-estan-por-desbordar-2000256966",
+      "https://www.infobae.com/peru/2025/05/30/cerca-de-60-lagunas-glaciares-en-riesgo-muy-alto-de-desborde-estas-son-las-regiones-con-mayor-peligro-segun-inaigem/",
+      "https://news.un.org/es/story/2025/05/1539066"
+    ]
+  },
+  "resumen": {
+    "glaciares_total": 2084,
+    "superficie_glaciar_km2": 1050.32,
+    "superficie_glaciar_nota": "INGLOG 2023. Glaciares libres y cubiertos por detritos rocosos.",
+    "retroceso_pct": 56,
+    "retroceso_nota": "Pérdida del 56% de la superficie glaciar en 58 años (seis décadas); pérdida total de 1,348.75 km2. MINAM/INAIGEM.",
+    "lagunas_inventariadas": 8466,
+    "lagunas_inventariadas_nota": "Lagunas de origen glaciar, superficie total 1,081.31 km2 (INGLOG 2023).",
+    "lagunas_en_riesgo_desborde": 528,
+    "lagunas_peligrosas": 152,
+    "lagunas_peligrosas_nota": "152 lagunas de riesgo elevado segun Evaluacion Nacional 2024: 58 de 'muy alto' + 94 de 'alto'. La prensa redondea a '~153' o 'mas de 150'. 528 en total presentan algun nivel de riesgo de desborde.",
+    "lagunas_muy_alto_riesgo": 58,
+    "lagunas_alto_riesgo": 94,
+    "lagunas_con_sensores": 3,
+    "lagunas_con_sensores_nota": "Solo 3 lagunas con monitoreo/sensores de nivel en tiempo real: Palcacocha (Ancash), Gangrajanca (Huanuco) y Upiscocha/Upsicocha (Cusco). Es decir, 55 de las 58 de muy alto riesgo NO tienen alerta en tiempo real.",
+    "ranking_mundial_glof": "Peru es el tercer pais con mayor riesgo del mundo ante inundaciones por desborde de lagos glaciares (GLOF).",
+    "eventos_glof_historicos": "Mas de 140 eventos GLOF documentados en el pais.",
+    "fuente_url": "https://gestion.pe/peru/tragedia-en-nepal-peru-tiene-mas-de-150-lagunas-glaciares-en-riesgo-elevado-de-desborde-donde-se-encuentran-noticia/"
+  },
+  "por_region": [
+    {
+      "region": "Ancash",
+      "lagunas_peligrosas": "s/d (mayor concentracion nacional, Cordillera Blanca)",
+      "con_sensores": 1,
+      "sensor_nota": "Laguna Palcacocha (origen del aluvion de Huaraz 1941).",
+      "nota": "Las 20 lagunas de mayor riesgo de Ancash exponen a mas de 15,000 familias; Palcacocha ~3,980 viviendas y Tullparaju ~4,198 viviendas expuestas.",
+      "fuente_url": "https://gestion.pe/peru/tragedia-en-nepal-peru-tiene-mas-de-150-lagunas-glaciares-en-riesgo-elevado-de-desborde-donde-se-encuentran-noticia/"
+    },
+    {
+      "region": "Lima",
+      "lagunas_peligrosas": "s/d",
+      "con_sensores": 0,
+      "fuente_url": "https://www.infobae.com/peru/2025/05/30/cerca-de-60-lagunas-glaciares-en-riesgo-muy-alto-de-desborde-estas-son-las-regiones-con-mayor-peligro-segun-inaigem/"
+    },
+    {
+      "region": "Cusco",
+      "lagunas_peligrosas": "s/d",
+      "con_sensores": 1,
+      "sensor_nota": "Laguna Upiscocha/Upsicocha (~111 viviendas expuestas).",
+      "fuente_url": "https://gestion.pe/peru/tragedia-en-nepal-peru-tiene-mas-de-150-lagunas-glaciares-en-riesgo-elevado-de-desborde-donde-se-encuentran-noticia/"
+    },
+    {
+      "region": "Puno",
+      "lagunas_peligrosas": "s/d",
+      "con_sensores": 0,
+      "fuente_url": "https://www.infobae.com/peru/2025/05/30/cerca-de-60-lagunas-glaciares-en-riesgo-muy-alto-de-desborde-estas-son-las-regiones-con-mayor-peligro-segun-inaigem/"
+    },
+    {
+      "region": "Junin",
+      "lagunas_peligrosas": "s/d",
+      "con_sensores": 0,
+      "nota": "Cordillera Huaytapallana bajo monitoreo de lagunas potencialmente peligrosas (INAIGEM/SINIA).",
+      "fuente_url": "https://sinia.minam.gob.pe/documentos/monitoreo-lagunas-potencialmente-peligrosas-zonas-criticas-cuencas"
+    },
+    {
+      "region": "Huanuco",
+      "lagunas_peligrosas": "s/d",
+      "con_sensores": 1,
+      "sensor_nota": "Laguna Gangrajanca.",
+      "fuente_url": "https://es.gizmodo.com/peru-identifico-58-lagunas-glaciares-de-alto-riesgo-en-los-andes-solo-tres-tienen-sensores-que-avisan-en-tiempo-real-si-estan-por-desbordar-2000256966"
+    }
+  ],
+  "antecedentes": [
+    {
+      "anio": "1941",
+      "lugar": "Huaraz (Ancash)",
+      "evento": "Aluvion glaciar (GLOF) por desprendimiento de hielo a la laguna Palcacocha y ruptura del dique morrenico",
+      "victimas": "~1,800 muertos, 400 heridos, 1,500 familias afectadas",
+      "fuente_url": "https://es.wikipedia.org/wiki/Aluvi%C3%B3n_de_Huaraz_de_1941"
+    },
+    {
+      "anio": "1970",
+      "lugar": "Yungay (Ancash)",
+      "evento": "Avalancha de escombros del nevado Huascaran gatillada por el terremoto de Ancash (alud de ~30 millones de toneladas de lodo, hielo y roca)",
+      "victimas": "~18,000 muertos y desaparecidos; sepulto la ciudad de Yungay y aldeas vecinas",
+      "fuente_url": "https://es.wikipedia.org/wiki/Aluvi%C3%B3n_de_Yungay_de_1970"
+    },
+    {
+      "anio": "2010",
+      "lugar": "Carhuaz (Ancash)",
+      "evento": "Aluvion desde la laguna 513 por caida de bloque de hielo del nevado Hualcan (ola de ~28 m); desborde parcial",
+      "victimas": "Sin muertos confirmados (una fuente menciona 1); ~20 viviendas destruidas y afectada la planta de agua que abastece a ~60,000 personas de Carhuaz",
+      "fuente_url": "https://www.scielo.org.ar/img/revistas/raga/v69n3/html/v69n3a08.htm"
+    }
+  ],
+  "financiamiento": [
+    {
+      "fuente": "Fondo Newton-Paulet (via Fondecyt / Concytec)",
+      "detalle": "Financiamiento de investigaciones sobre riesgo glaciar en el Peru. Investigadores advierten que la falta de financiamiento publico sostenido limita la expansion de los sistemas de monitoreo.",
+      "fuente_url": "https://www.swissinfo.ch/spa/per%C3%BA-refuerza-la-vigilancia-de-lagunas-glaciares-ante-el-riesgo-de-aluviones-en-los-andes/92018727"
+    },
+    {
+      "fuente": "Banco Mundial / BID",
+      "detalle": "s/d - No se encontro en fuentes publicas un proyecto especifico y vigente de financiamiento del Banco Mundial o BID dedicado al monitoreo de lagunas glaciares peligrosas del Peru. No confirmado.",
+      "fuente_url": "s/d"
+    }
+  ]
+}
