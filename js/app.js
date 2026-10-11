@@ -181,6 +181,13 @@ function renderDIT(data) {
   initDistancia(deps);
 }
 
+// Nombres del GeoJSON (geoBoundaries ADM1) → nombres del dit.json
+const GEO2DIT = {
+  'Ancash': 'Áncash',
+  'El Callao': 'Prov. Const. del Callao',
+  'Municipalidad Metropolitana de Lima': 'Lima Metropolitana',
+  'Lima': 'Departamento de Lima'
+};
 function renderDITMap(deps) {
   if (typeof L === 'undefined') { $('#dit-map').innerHTML = '<p class="error-msg">Leaflet no disponible.</p>'; return; }
   const map = L.map('dit-map', { scrollWheelZoom: false, attributionControl: true })
@@ -192,24 +199,46 @@ function renderDITMap(deps) {
     maxZoom: 10, minZoom: 4
   }).addTo(map);
 
-  // PLACEHOLDER GeoJSON: el team-lead inyecta polígonos reales aquí.
-  // Mientras tanto, marcadores por capital de departamento.
-  deps.forEach(d => {
-    const info = CAPITALES[normDept(d.departamento)];
-    if (!info) return;
-    const lv = nivel(d.anemia, UMBRALES.anemia);
-    const r = 8 + (d.anemia || 0) * 0.22;
-    L.circleMarker([info.lat, info.lng], {
-      radius: Math.min(r, 26), color: COLOR[lv], fillColor: COLOR[lv],
-      fillOpacity: 0.55, weight: 2
-    }).addTo(map).bindPopup(`
-      <div class="map-popup">
-        <b>${d.departamento}</b> · ${info.capital}
-        <div class="row"><span>Anemia</span><span>${d.anemia != null ? d.anemia + '%' : '—'}</span></div>
-        <div class="row"><span>Desnutrición</span><span>${d.dci != null ? d.dci + '%' : '—'}</span></div>
-        <div class="row"><span>Bajo peso</span><span>${d.bajo_peso != null ? d.bajo_peso + '%' : '—'}</span></div>
-        <div class="row"><span>Estado</span><span>${ETIQUETA[lv]}</span></div>
-      </div>`);
+  // índice de datos por nombre normalizado
+  const byName = {};
+  deps.forEach(d => { byName[normDept(d.departamento)] = d; });
+  const datoDe = (shapeName) => byName[normDept(GEO2DIT[shapeName] || shapeName)] || null;
+
+  // Coroplético por anemia; si falla el GeoJSON, cae a marcadores por capital
+  fetch('data/peru_departamentos.geojson').then(r => r.ok ? r.json() : Promise.reject()).then(gj => {
+    const layer = L.geoJSON(gj, {
+      style: (f) => {
+        const d = datoDe(f.properties.shapeName);
+        const lv = d ? nivel(d.anemia, UMBRALES.anemia) : 'na';
+        return { fillColor: COLOR[lv], fillOpacity: 0.72, color: '#0a0e1a', weight: 1 };
+      },
+      onEachFeature: (f, lyr) => {
+        const d = datoDe(f.properties.shapeName);
+        const nom = d ? d.departamento : f.properties.shapeName;
+        const lv = d ? nivel(d.anemia, UMBRALES.anemia) : 'na';
+        lyr.bindPopup(`
+          <div class="map-popup">
+            <b>${nom}</b>
+            <div class="row"><span>Anemia (6–35 m)</span><span>${d && d.anemia != null ? d.anemia + '%' : '—'}</span></div>
+            <div class="row"><span>Desnutrición crónica</span><span>${d && d.dci != null ? d.dci + '%' : '—'}</span></div>
+            <div class="row"><span>Bajo peso al nacer</span><span>${d && d.bajo_peso != null ? d.bajo_peso + '%' : '—'}</span></div>
+            <div class="row"><span>Estado</span><span>${ETIQUETA[lv]}</span></div>
+          </div>`);
+        lyr.on('mouseover', () => lyr.setStyle({ weight: 2.5, color: '#fff' }));
+        lyr.on('mouseout', () => lyr.setStyle({ weight: 1, color: '#0a0e1a' }));
+      }
+    }).addTo(map);
+    try { map.fitBounds(layer.getBounds(), { padding: [10, 10] }); } catch (e) {}
+    setTimeout(() => map.invalidateSize(), 80);
+  }).catch(() => {
+    // fallback: marcadores por capital
+    deps.forEach(d => {
+      const info = CAPITALES[normDept(d.departamento)];
+      if (!info) return;
+      const lv = nivel(d.anemia, UMBRALES.anemia);
+      L.circleMarker([info.lat, info.lng], { radius: Math.min(8 + (d.anemia || 0) * 0.22, 26), color: COLOR[lv], fillColor: COLOR[lv], fillOpacity: 0.55, weight: 2 })
+        .addTo(map).bindPopup(`<b>${d.departamento}</b> · anemia ${d.anemia}%`);
+    });
   });
 }
 
@@ -220,7 +249,7 @@ function initDistancia(deps) {
   sel.innerHTML = '<option value="__best__">Mejor del país</option>';
   deps.slice().sort((a, b) => a.departamento.localeCompare(b.departamento))
     .forEach(d => sel.appendChild(el('option', { value: d.departamento }, d.departamento)));
-  sel.value = 'Lima';
+  sel.value = deps.some(d => d.departamento === 'Lima Metropolitana') ? 'Lima Metropolitana' : '__best__';
   if (sel.value !== 'Lima') sel.value = '__best__';
   sel.onchange = () => drawDistancia(deps, sel.value);
   drawDistancia(deps, sel.value);
@@ -397,26 +426,63 @@ function initSubscribe() {
 /* ====================================================================
    Bootstrap
    ==================================================================== */
+/* Panel de alertas activas: la señal más urgente de cada módulo, de un vistazo */
+function renderAlertasActivas(dit, nino, glac) {
+  const cont = $('#alertas-activas'); if (!cont) return;
+  const cards = [];
+  // DIT
+  if (dit && dit.departamentos) {
+    const crit = dit.departamentos.filter(d => d.anemia != null && d.anemia >= UMBRALES.anemia.crit);
+    const peor = dit.departamentos.slice().filter(d => d.anemia != null).sort((a, b) => b.anemia - a.anemia)[0];
+    cards.push({ sev: crit.length ? 'crit' : 'warn', ico: '🧒', tab: 'dit',
+      titulo: 'Anemia infantil',
+      texto: `${crit.length} de ${dit.departamentos.length} ámbitos con anemia crítica (≥${UMBRALES.anemia.crit}%). Peor: ${peor ? peor.departamento + ' ' + peor.anemia + '%' : 's/d'}.` });
+  }
+  // Niño
+  if (nino && nino.estado_actual) {
+    const e = nino.estado_actual; const al = String(e.alerta_enfen || '').toLowerCase();
+    const sev = /roj/.test(al) ? 'crit' : /alerta|amar|extraord/.test(al) || /extraord/.test(String(e.condicion||'').toLowerCase()) ? 'warn' : 'ok';
+    const alto = (nino.regiones_riesgo || []).filter(r => /alto/i.test(r.nivel)).map(r => r.region);
+    const corto = (s) => String(s || '').split(/[.(]/)[0].trim();
+    cards.push({ sev, ico: '🌊', tab: 'nino', titulo: 'Fenómeno El Niño',
+      texto: `${corto(e.alerta_enfen) || corto(e.condicion) || 's/d'}.${alto.length ? ' Riesgo alto: ' + alto.slice(0, 4).join(', ') + '.' : ''}` });
+  }
+  // Glaciares
+  if (glac && glac.resumen) {
+    const r = glac.resumen; const may = r.lagunas_muy_alto_riesgo, sen = r.lagunas_con_sensores;
+    const sinMon = (typeof may === 'number' && typeof sen === 'number') ? may - sen : null;
+    cards.push({ sev: 'crit', ico: '🏔️', tab: 'glaciares', titulo: 'Lagunas glaciares',
+      texto: sinMon != null ? `${sinMon} de ${may} lagunas de muy alto riesgo SIN alerta temprana (solo ${sen} con sensores).` : `${r.lagunas_peligrosas} lagunas de riesgo elevado; solo ${sen} con monitoreo.` });
+  }
+  cont.innerHTML = cards.map(c => `
+    <button class="aa-card aa-${c.sev}" data-goto="${c.tab}">
+      <div class="aa-ico">${c.ico}</div>
+      <div class="aa-body"><div class="aa-h">${c.titulo} <span class="aa-badge aa-b-${c.sev}">${c.sev === 'crit' ? 'CRÍTICO' : c.sev === 'warn' ? 'ALERTA' : 'ESTABLE'}</span></div>
+        <div class="aa-t">${c.texto}</div></div>
+    </button>`).join('');
+  cont.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => {
+    const t = document.querySelector('.tab[data-tab="' + b.dataset.goto + '"]'); if (t) { t.click(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  }));
+}
+
 async function init() {
   initTabs();
   initSubscribe();
+  let ditD = null, ninoD = null, glacD = null;
 
-  // DIT
   try {
-    const dit = await cargar('data/dit.json');
-    renderDIT(dit);
-    if (dit.meta && dit.meta.anio) $('#lastUpdated').textContent = 'Actualizado: ' + dit.meta.anio;
+    ditD = await cargar('data/dit.json');
+    renderDIT(ditD);
+    if (ditD.meta && ditD.meta.anio) $('#lastUpdated').textContent = 'Actualizado: ' + ditD.meta.anio;
   } catch (err) {
     $('#dit-kpis').innerHTML = `<p class="error-msg">Error cargando DIT: ${err.message}</p>`;
   }
-
-  // Niño
-  try { renderNino(await cargar('data/nino.json')); }
+  try { ninoD = await cargar('data/nino.json'); renderNino(ninoD); }
   catch (err) { $('#nino-estado').innerHTML = `<p class="error-msg">Error cargando El Niño: ${err.message}</p>`; }
-
-  // Glaciares
-  try { renderGlaciares(await cargar('data/glaciares.json')); }
+  try { glacD = await cargar('data/glaciares.json'); renderGlaciares(glacD); }
   catch (err) { $('#glaciares-kpis').innerHTML = `<p class="error-msg">Error cargando glaciares: ${err.message}</p>`; }
+
+  renderAlertasActivas(ditD, ninoD, glacD);
 }
 
 document.addEventListener('DOMContentLoaded', init);
