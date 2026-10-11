@@ -92,9 +92,20 @@ function chip(lvl) {
   return `<span class="chip ${lvl}">${ETIQUETA[lvl]}</span>`;
 }
 
+// --- Seguridad: escape HTML y allowlist de esquema de URL ---
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+function safeUrl(url) {
+  const s = String(url == null ? '' : url).trim();
+  return /^https?:\/\//i.test(s) ? s : ''; // solo http(s) absolutos; rechaza javascript:, data:, etc.
+}
 function fuenteLink(url, label = 'fuente') {
-  if (!url) return '';
-  return `<a class="fuente" href="${url}" target="_blank" rel="noopener">${label}</a>`;
+  const safe = safeUrl(url);
+  if (!safe) return '';
+  return `<a class="fuente" href="${esc(safe)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`;
 }
 
 async function cargar(ruta) {
@@ -169,7 +180,7 @@ function renderDIT(data) {
     const lv = nivel(d.anemia, UMBRALES.anemia);
     tb.appendChild(el('tr', {}, `
       <td class="rank-pos">${i + 1}</td>
-      <td class="dept">${d.departamento}</td>
+      <td class="dept">${esc(d.departamento)}</td>
       <td class="val">${d.anemia != null ? d.anemia + '%' : '—'}</td>
       <td>${chip(lv)}</td>
       <td>${fuenteLink(d.fuente_url)}</td>
@@ -218,7 +229,7 @@ function renderDITMap(deps) {
         const lv = d ? nivel(d.anemia, UMBRALES.anemia) : 'na';
         lyr.bindPopup(`
           <div class="map-popup">
-            <b>${nom}</b>
+            <b>${esc(nom)}</b>
             <div class="row"><span>Anemia (6–35 m)</span><span>${d && d.anemia != null ? d.anemia + '%' : '—'}</span></div>
             <div class="row"><span>Desnutrición crónica</span><span>${d && d.dci != null ? d.dci + '%' : '—'}</span></div>
             <div class="row"><span>Bajo peso al nacer</span><span>${d && d.bajo_peso != null ? d.bajo_peso + '%' : '—'}</span></div>
@@ -237,7 +248,7 @@ function renderDITMap(deps) {
       if (!info) return;
       const lv = nivel(d.anemia, UMBRALES.anemia);
       L.circleMarker([info.lat, info.lng], { radius: Math.min(8 + (d.anemia || 0) * 0.22, 26), color: COLOR[lv], fillColor: COLOR[lv], fillOpacity: 0.55, weight: 2 })
-        .addTo(map).bindPopup(`<b>${d.departamento}</b> · anemia ${d.anemia}%`);
+        .addTo(map).bindPopup(`<b>${esc(d.departamento)}</b> · anemia ${d.anemia}%`);
     });
   });
 }
@@ -248,7 +259,7 @@ function initDistancia(deps) {
   const sel = $('#dit-ref');
   sel.innerHTML = '<option value="__best__">Mejor del país</option>';
   deps.slice().sort((a, b) => a.departamento.localeCompare(b.departamento))
-    .forEach(d => sel.appendChild(el('option', { value: d.departamento }, d.departamento)));
+    .forEach(d => sel.appendChild(el('option', { value: d.departamento }, esc(d.departamento))));
   sel.value = deps.some(d => d.departamento === 'Lima Metropolitana') ? 'Lima Metropolitana' : '__best__';
   if (sel.value !== 'Lima') sel.value = '__best__';
   sel.onchange = () => drawDistancia(deps, sel.value);
@@ -303,16 +314,16 @@ function renderNino(data) {
   $('#nino-estado').innerHTML = `
     <div class="estado-card">
       <div class="l">Condición actual</div>
-      <div class="v">${est.condicion || '—'}</div>
+      <div class="v">${esc(est.condicion) || '—'}</div>
       ${chip(lvAlerta)} ${fuenteLink(est.fuente_url)}
     </div>
     <div class="estado-card">
       <div class="l">Alerta ENFEN</div>
-      <div class="v">${est.alerta_enfen || '—'}</div>
+      <div class="v">${esc(est.alerta_enfen) || '—'}</div>
     </div>
     <div class="estado-card">
       <div class="l">Pronóstico verano</div>
-      <div class="v" style="font-size:16px">${est.pronostico_verano || '—'}</div>
+      <div class="v" style="font-size:16px">${esc(est.pronostico_verano) || '—'}</div>
     </div>`;
 
   // Regiones en riesgo
@@ -323,8 +334,8 @@ function renderNino(data) {
     const lv = (r.nivel || '').toLowerCase().startsWith('alt') ? 'crit'
       : (r.nivel || '').toLowerCase().startsWith('med') ? 'warn' : 'ok';
     tb.appendChild(el('tr', {}, `
-      <td class="dept">${r.region}</td>
-      <td style="color:var(--muted)">${r.riesgo || '—'}</td>
+      <td class="dept">${esc(r.region)}</td>
+      <td style="color:var(--muted)">${esc(r.riesgo) || '—'}</td>
       <td>${chip(lv)}</td>
       <td>${fuenteLink(r.fuente_url)}</td>`));
   });
@@ -335,8 +346,8 @@ function renderNino(data) {
   ul.innerHTML = '';
   (data.antecedentes || []).forEach(a => {
     ul.appendChild(el('li', {}, `
-      <div class="tl-top"><span class="tl-title">${a.evento}</span></div>
-      <div class="tl-desc">${a.impacto || ''} ${fuenteLink(a.fuente_url)}</div>`));
+      <div class="tl-top"><span class="tl-title">${esc(a.evento)}</span></div>
+      <div class="tl-desc">${esc(a.impacto) || ''} ${fuenteLink(a.fuente_url)}</div>`));
   });
 }
 
@@ -401,10 +412,10 @@ function renderGlaciares(data) {
   (data.antecedentes || []).forEach(a => {
     ul.appendChild(el('li', {}, `
       <div class="tl-top">
-        <span class="tl-title">${a.lugar || a.evento || ''}</span>
-        <span class="tl-year">${a.anio || ''}</span>
+        <span class="tl-title">${esc(a.lugar || a.evento || '')}</span>
+        <span class="tl-year">${esc(a.anio) || ''}</span>
       </div>
-      <div class="tl-desc">${a.evento || ''}${a.victimas ? ' · ' + a.victimas + ' víctimas' : ''}</div>`));
+      <div class="tl-desc">${esc(a.evento) || ''}${a.victimas ? ' · ' + esc(a.victimas) + ' víctimas' : ''}</div>`));
   });
 }
 
@@ -457,8 +468,8 @@ function renderAlertasActivas(dit, nino, glac) {
   cont.innerHTML = cards.map(c => `
     <button class="aa-card aa-${c.sev}" data-goto="${c.tab}">
       <div class="aa-ico">${c.ico}</div>
-      <div class="aa-body"><div class="aa-h">${c.titulo} <span class="aa-badge aa-b-${c.sev}">${c.sev === 'crit' ? 'CRÍTICO' : c.sev === 'warn' ? 'ALERTA' : 'ESTABLE'}</span></div>
-        <div class="aa-t">${c.texto}</div></div>
+      <div class="aa-body"><div class="aa-h">${esc(c.titulo)} <span class="aa-badge aa-b-${c.sev}">${c.sev === 'crit' ? 'CRÍTICO' : c.sev === 'warn' ? 'ALERTA' : 'ESTABLE'}</span></div>
+        <div class="aa-t">${esc(c.texto)}</div></div>
     </button>`).join('');
   cont.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => {
     const t = document.querySelector('.tab[data-tab="' + b.dataset.goto + '"]'); if (t) { t.click(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }

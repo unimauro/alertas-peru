@@ -6,7 +6,11 @@
   <title>Alertas Perú — demo</title>
   <meta name="description" content="Prototipo de tablero de alertas para tomadores de decisión del Estado peruano: desarrollo infantil temprano, Fenómeno El Niño y lagunas glaciares peligrosas." />
 
-  <!-- Leaflet 1.9.4 CSS (CDN unpkg con SRI). Verificar hash antes de producción. -->
+  <!-- Content-Security-Policy (defensa en profundidad; bloquea javascript:/scripts inyectados) -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.basemaps.cartocdn.com https://unpkg.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'" />
+
+  <!-- Leaflet 1.9.4 CSS (CDN unpkg, SRI sha384 verificado) -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
