@@ -205,9 +205,8 @@ function renderDITMap(deps) {
     .setView([-9.2, -75.0], 5);
   window._ditMap = map;
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap &copy; CARTO',
-    maxZoom: 10, minZoom: 4
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap', maxZoom: 10, minZoom: 4
   }).addTo(map);
 
   // índice de datos por nombre normalizado
@@ -480,6 +479,11 @@ async function init() {
   initTabs();
   initSubscribe();
   let ditD = null, ninoD = null, glacD = null;
+  const mainEl = document.querySelector('main'); if (mainEl) mainEl.setAttribute('aria-busy','true');
+  $('#alertas-activas').innerHTML = '<p class="loading">Cargando alertas…</p>';
+  $('#dit-kpis').innerHTML = '<p class="loading">Cargando datos…</p>';
+  $('#nino-estado').innerHTML = '<p class="loading">Cargando…</p>';
+  $('#glaciares-kpis').innerHTML = '<p class="loading">Cargando…</p>';
 
   try {
     ditD = await cargar('data/dit.json');
@@ -494,6 +498,7 @@ async function init() {
   catch (err) { $('#glaciares-kpis').innerHTML = `<p class="error-msg">Error cargando glaciares: ${err.message}</p>`; }
 
   renderAlertasActivas(ditD, ninoD, glacD);
+  if (mainEl) mainEl.removeAttribute('aria-busy');
 }
 
 document.addEventListener('DOMContentLoaded', init);

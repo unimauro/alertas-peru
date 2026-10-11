@@ -8,7 +8,7 @@
 
   <!-- Content-Security-Policy (defensa en profundidad; bloquea javascript:/scripts inyectados) -->
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.basemaps.cartocdn.com https://unpkg.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'" />
+    content="default-src 'self'; script-src 'self' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org https://unpkg.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'" />
 
   <!-- Leaflet 1.9.4 CSS (CDN unpkg, SRI sha384 verificado) -->
   <link
@@ -27,7 +27,7 @@
   <!-- Banner PROTOTIPO -->
   <div class="proto-banner" role="note">
     <strong>PROTOTIPO / DEMO</strong>
-    <span>Datos de ejemplo. No reemplaza los sistemas oficiales de alerta.</span>
+    <span>Datos oficiales con fuente (INEI-ENDES, ENFEN, INAIGEM). No reemplaza los sistemas oficiales de alerta.</span>
   </div>
 
   <header class="site-header">
@@ -109,7 +109,7 @@
           </label>
         </div>
         <p class="hint">Brecha de cada departamento frente al referente. Cerrar la distancia es la meta.</p>
-        <div class="chart-wrap"><canvas id="dit-chart"></canvas></div>
+        <div class="chart-wrap"><canvas id="dit-chart" role="img" aria-label="Brecha de anemia infantil de cada departamento frente al referente, en puntos porcentuales."></canvas></div>
       </div>
     </section>
 
@@ -148,7 +148,7 @@
       <div class="split">
         <div class="card">
           <div class="card-head"><h3>Monitoreo por región</h3></div>
-          <div class="chart-wrap"><canvas id="glaciares-chart"></canvas></div>
+          <div class="chart-wrap"><canvas id="glaciares-chart" role="img" aria-label="Lagunas peligrosas por región, diferenciando con y sin monitoreo."></canvas></div>
         </div>
         <div class="card">
           <div class="card-head"><h3>Antecedentes de aluviones</h3></div>
